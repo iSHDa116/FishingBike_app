@@ -1,0 +1,29 @@
+services:
+  web:
+    # dockerfileから自作する という意味。既製品の場合はimageを使う
+    build:
+    # context: . にすることで、現在のymlファイルがあるディレクトリをdockerに渡す
+    # プロジェクト直下にある場合、プロジェクト全体が渡されます
+      context: .
+      dockerfile: containers/docker/Dockerfile
+
+    working_dir: /app
+
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: sleep infinity
+
+    # ローカルでの変更を即座に保存する
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+
+  db:
+    db:
+  # PostGIS(地図を扱う機能)入りのPostgresSQLをインストール
+  image: postgis/postgis:17-3.5
+  # 環境変数の設定。ユーザー作成からログインを自動化
+  environment:
+    POSTGRES_DB: geodb
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: password
