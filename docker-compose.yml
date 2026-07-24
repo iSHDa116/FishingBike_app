@@ -9,8 +9,8 @@ services:
 
     working_dir: /app
 
-    # command: python manage.py runserver 0.0.0.0:8000
-    command: sleep infinity
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: sleep infinity
 
     # ローカルでの変更を即座に保存する
     volumes:
