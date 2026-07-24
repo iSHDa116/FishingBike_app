@@ -29,4 +29,4 @@ COPY containers/requirements/requirements.txt .
 # ライブラリのインストール。バージョン齟齬をなくすライブラリを入れている
 # requirements.txt の中身を全てインストールしている
 RUN pip install --upgrade pip \
-    && pip install -r containers/requirements/requirements.txt
+    && pip install -r requirements.txt

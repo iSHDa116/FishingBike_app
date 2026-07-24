@@ -19,11 +19,11 @@ services:
       - "8000:8000"
 
   db:
-    db:
-  # PostGIS(地図を扱う機能)入りのPostgresSQLをインストール
-  image: postgis/postgis:17-3.5
-  # 環境変数の設定。ユーザー作成からログインを自動化
-  environment:
-    POSTGRES_DB: geodb
-    POSTGRES_USER: postgres
-    POSTGRES_PASSWORD: password
+    platform: linux/amd64
+    # PostGIS(地図を扱う機能)入りのPostgresSQLをインストール
+    image: postgis/postgis:17-3.5
+    # 環境変数の設定。ユーザー作成からログインを自動化
+    environment:
+      POSTGRES_DB: geodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
