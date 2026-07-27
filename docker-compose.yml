@@ -1,5 +1,7 @@
 services:
   web:
+    env_file:
+      - .env
     # dockerfileから自作する という意味。既製品の場合はimageを使う
     build:
     # context: . にすることで、現在のymlファイルがあるディレクトリをdockerに渡す

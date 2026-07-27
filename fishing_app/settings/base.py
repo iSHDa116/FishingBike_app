@@ -1,19 +1,13 @@
+import environ
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# settings/base.py から見て2階層上がプロジェクトルート
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / '.env')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vjc+$h-kk25@ac5hge#b@19ipedga3aumd6v2iuv!39p$0^-7k'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = env('SECRET_KEY')
 
 
 # Application definition
@@ -26,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'spots',
 ]
 
 MIDDLEWARE = [
@@ -61,23 +56,6 @@ WSGI_APPLICATION = 'fishing_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        # 地形用データを使える
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        # 接続するDB名。ymlのPOSTGRES_DBに合わせる
-        "NAME": "geodb",
-        # 接続するDBのユーザーネーム。POSTGRES_USERと一致させる
-        "USER": "postgres",
-        # 以下ほぼ同文
-        "PASSWORD": "password",
-        # DBのサービス名。Docker特有
-        "HOST": "db",
-        # PostgreSQLが待ち受けているポート番号。Postgresの標準ポート
-        "PORT": "5432",
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -101,9 +79,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
